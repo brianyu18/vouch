@@ -1,7 +1,7 @@
 ---
 title: Vouch — Product Spec v2
 status: current
-revision: 5
+revision: 6
 supersedes: CLAUDE.md @ 06b8b89 (v1, 2026-04-23)
 updated: 2026-08-25
 ---
@@ -65,6 +65,17 @@ revision 2 except symmetry, swiper-only accounts, v1 carry-over and lifecycle.
 | 24 | **Depleting allotment bar** for user and swipers — **free/core, not premium** | New §4.5 |
 | 25 | **Premium pillars A–E approved**, with re-pitch clarified and a build order | §8.3 |
 | 26 | **Swiper crew switcher** designed — the friends menu | Resolves §10.4a |
+
+**Revision 6 (2026-08-25, same day)** — pitch mechanics and the v1 prune.
+
+| # | Change | Effect |
+|---|---|---|
+| 27 | **Material pool capped at 10 items** (photos + prompts combined); each pitch selects a subset | Revises §2 |
+| 28 | **Re-pitch: either side can start it**, others get an **expiring action window** | New §2.2 |
+| 29 | Re-pitch cadence — **once per 30 days**, extra rounds purchasable | New §2.2 |
+| 30 | **Guest swipers: 1/month on premium**, more purchasable | Revises §8.3 D |
+| 31 | **Seeking profile CUT** — becomes a selectable prompt instead | Revises §13 |
+| 32 | **v1 audit** — every v1 feature kept, folded or pruned | New §13 |
 
 ---
 
@@ -134,7 +145,24 @@ threads rather than one undifferentiated stream.
 
 ## 2. Profile creation — the pitch
 
-The user submits a **material pool**: prompts and photos.
+### 2.1 The material pool — capped at 10
+
+The user submits a **material pool** of **at most 10 items total — photos and prompts
+combined.** Not 10 of each; ten, all in.
+
+The cap exists to protect the swiper. A pitch is real work — reading someone, choosing,
+arranging, writing — and handing a friend forty items to sift turns a fun favour into a
+chore, which is the fastest way to lose a crew before they have swiped once.
+
+**Each pitch selects and arranges a *subset* of the pool.** A swiper does not use all
+ten; they choose the six or seven that, to them, make the best case. That selection is
+precisely what makes competing pitches differ and what makes the choice meaningful — if
+every pitch contained identical material, only ordering would vary and the competition
+would be hollow.
+
+The user can **update and edit the pool at any time**, before or after launch.
+
+### 2.2 The pitch
 
 Each assigned swiper independently **builds and submits their version of what they
 think the user's profile should look like** — their selection, their arrangement,
@@ -152,8 +180,49 @@ user in the wild. The competition happens *before* launch, not in the deck.
 > actually see you.
 
 Swipers may continue to **suggest edits** (a prompt rewrite, a swap, a new upload)
-after launch; the user approves or rejects each one. **No AI.** All content is
-authored by the user and their friends.
+after launch; the user approves or rejects each one. Editing — by the user or as a
+swiper suggestion — is **free forever** (§8.3 A). **No AI.** All content is authored by
+the user and their friends.
+
+### 2.3 Re-pitch — running the competition again
+
+A re-pitch is a **full teardown**: every swiper rebuilds a complete profile from
+scratch and the user picks a new winner or rejects them all. It is not an edit.
+
+**Either side can start one.** A swiper who thinks the current profile is not doing
+their friend justice can propose a re-pitch; so can the user.
+
+**Swiper-initiated rounds need the user's confirmation before they open.** A re-pitch
+spends the user's monthly allowance and rewrites the user's profile, so a friend
+*proposes* and the user *starts*. Without this, one enthusiastic swiper could burn the
+allowance without asking, and five swipers could trigger five rounds.
+
+**The action window.** When a round opens, every swiper is notified and has a fixed
+window — **default 72 hours** — to submit.
+
+- Submissions appear as they arrive; the user can review early and **close the round
+  the moment they have a winner**
+- A **halfway reminder** nudges swipers who have not submitted
+- At expiry the round closes with whatever arrived. Non-submitters simply do not appear
+- **If nobody submits, the round is void and the allowance is not consumed** — a user
+  must never lose their monthly re-pitch to unresponsive friends
+- **The current profile stays live in circulation for the entire round.** There is no
+  downtime, no gap in the deck, and nothing breaks while the user waits
+
+72 hours is the deliberate middle: 24 is too short for a friend to do real curation,
+a week leaves the user hanging.
+
+**Cadence — once per 30 days.** A rolling 30-day cool-down from the last *completed*
+round, not a calendar month (which would allow the 31st and the 1st back to back).
+
+- **Free:** one pitch round at signup
+- **Premium:** one re-pitch per 30 days
+- **Either tier:** extra rounds **purchasable**, same pack model as Dates
+
+The binding constraint here is **crew fatigue, not user demand.** Unlimited re-pitches
+would let a restless user ask three friends to rebuild a profile weekly, which burns
+out the volunteers the entire product depends on — and cheapens the event, which is
+special precisely because it is rare.
 
 ## 3. Who swipes — everyone, together
 
@@ -481,10 +550,14 @@ taste," gamifies the crew, and makes the allocation dial (§4.4) a *decision* ra
 than a guess: give more Kiss budget to the friend with the better record. Visible to
 the user; whether swipers see their own score is an open call.
 
-**D. Guest swipers.** Invite someone to swipe for a **single session** without
-occupying a permanent crew slot — a sibling visiting, a table at a bar. Fits the
-everyone-swipes-together spirit, and every guest is an unconverted user meeting the
-product at its most fun. Doubles as a growth loop.
+**D. Guest swipers — 1 per month on premium, more purchasable.** Invite someone to
+swipe for a **single session** without occupying a permanent crew slot — a sibling
+visiting, a table at a bar. Fits the everyone-swipes-together spirit, and every guest
+is an unconverted user meeting the product at its most fun. Doubles as a growth loop.
+
+Rationed for the same reason as re-pitches: a guest sees the user's deck and spends
+from the user's pie, so unlimited guests would be an unlimited hole in both privacy and
+budget. Extra guest passes sell in packs.
 
 **E. "See who Kissed you" — the pragmatic bet.** Not original, but seeing your incoming
 likes before matching is the highest-converting paid feature in the category, and it
@@ -542,9 +615,8 @@ signal, not a paywall) and can gate *who* the connection is behind premium later
 **Resolved in revision 5:** ~~10.4a context switching~~ (crew switcher + friends menu,
 §1.3).
 
-**10.6 v1 carry-over.** Confirm these survive: user-supplied basics (name, age, sex,
-orientation, seeking preference, smoking/alcohol/drugs), the "seeking profile" of
-desired traits, the 10-photo pool, voucher search and referral notifications.
+**Resolved in revision 6:** ~~10.6 v1 carry-over~~ — full audit in §13. Seeking profile
+cut, referral notifications pruned, everything else kept or folded.
 
 **10.7 Lifecycle and safety.** What happens to in-flight and held swipes when a swiper
 is removed? Blocking, reporting, abuse paths, and **18+ age enforcement** are
@@ -584,3 +656,49 @@ halves need validation before the higher tiers are built.
 - **Social auth/photos:** Instagram Graph API, Facebook Login SDK — for auth and photo
   import only; **not** as a friend-graph source (§9)
 - **Claude API:** no longer in the core loop
+
+## 13. v1 audit — kept, folded, pruned
+
+Every line of the v1 spec (`06b8b89`), resolved against v2. This closes §10.6.
+
+### 13.1 Kept
+
+| v1 feature | Status in v2 |
+|---|---|
+| Users ask friends to build their profile | **Core.** Became the pitch (§2.2) — friends now build *and* swipe |
+| Vouchers attach socials (Instagram/Facebook) to prove they're real | **Kept as swiper verification.** OAuth identity only — unaffected by the friend-graph finding in §9 |
+| Link IG/FB to pull photos; upload a pool for friends to choose from | **Kept**, now the 10-item material pool (§2.1) |
+| Users provide their own basic bio — name, age, sex, orientation, seeking preference, smoking, alcohol, drugs | **Kept unchanged.** The factual scaffolding, and precisely the part friends should *not* be writing |
+| "Friends paint the picture — the rest comes from vouchers" | **Kept as the product's philosophy.** Truer in v2 than it was in v1 |
+| Swipe-based matching with filters | **Kept**, extended by Date/Kiss/Pass (§4.1) |
+
+### 13.2 Folded into something else
+
+| v1 feature | Folded into |
+|---|---|
+| Users can search vouchers to find friends already on the app | **The swiper invite flow + contacts matching (§9).** Two parallel discovery systems would be redundant; there is one now |
+| Microtransactions — extra profile rolls beyond the initial 3 | **Re-pitch packs (§2.3).** Same "some free, buy more" shape, now attached to a human event instead of an AI reroll |
+| Free tier: limited daily swipes | **The Kiss pool + allocation pie (§4.4)** |
+| Premium: unlimited swipes | **Kept**, but now the *second* thing premium sells; crew size is the pillar (§8.1) |
+
+### 13.3 Pruned — dead in v2
+
+| v1 feature | Why it is gone |
+|---|---|
+| **AI (Claude) consolidates voucher submissions into one cohesive profile** | Cut at the pivot. It undercut the entire human-vouching premise — friends "vouched" while a model wrote the words |
+| **"Roll the dice" to regenerate, 3 free rolls, pay for more** | Died with the AI. **Re-pitch (§2.3) is its human successor** — same instinct (try again, some free, buy more), but the new version is your friends rebuilding it rather than a model rerolling it |
+| **Users create a "seeking profile" with traits they want in a match** | **Cut.** Modern dating apps have largely abandoned structured "what I want" forms — they read as a wishlist, they date badly, and nobody fills them in honestly. Replaced by a **selectable prompt** (§13.4) |
+| **When a voucher's referred user joins, the other person they vouched for gets notified (if preferences align)** | **Pruned as an automatic notification.** It pushes an unrequested introduction between two people who do not know each other, on the strength of a shared friend — a privacy problem, and it clashes with swiper blindness (§3.3) and with the user's control over their own deck. **The underlying graph fact survives** as passive social proof (§9): "you both know Alex" shown on the profile. Intrusive push becomes quiet trust signal |
+| **"Possible premium voucher referral features"** | Vague in v1, and the concrete version of it is now pruned above. Premium is crew size (§8.1) |
+
+### 13.4 The seeking profile becomes a prompt
+
+Instead of a separate structured form, **"what I'm looking for" is simply one of the
+selectable prompts** in the pool. A user who wants to say it can pick that prompt; a
+user who does not, does not. It occupies one of the 10 material slots like anything
+else, which is the right price for it.
+
+**Knock-on to design for:** v1's seeking profile was also, implicitly, the brief a
+swiper would read before acting. With it gone, **the brief lives in the group chat
+(§7)** — the user tells their crew what they are after in conversation, which is more
+natural, more current, and more honest than a form nobody updates.

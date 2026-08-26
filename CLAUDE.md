@@ -2,9 +2,10 @@
 
 A mobile dating app where **your trusted friends swipe with you and for you.**
 
-You supply a pool of prompts and photos. Each friend you invite **pitches their own
-version** of your profile; you pick the one that becomes your real profile, or reject
-them all and build your own. Then your friends go out and swipe on your behalf —
+You supply a pool of **at most 10 items — photos and prompts combined**. Each friend
+you invite **pitches their own version** of your profile, selecting and arranging a
+subset of that pool; you pick the one that becomes your real profile, or reject them
+all and build your own. Then your friends go out and swipe on your behalf —
 alongside you. Matches come back to you, and only you, to review and chat.
 
 > **Full product spec: [`docs/SPEC-v2.md`](docs/SPEC-v2.md)** (revision 2) — read it
@@ -17,6 +18,11 @@ alongside you. Matches come back to you, and only you, to review and chat.
 
 - **One canonical profile.** Up to 3 swipers each submit a proposed profile; the user
   picks one or rejects all. Nothing circulates in multiple versions.
+- **10-item material pool** — the cap protects swipers from being handed a chore;
+  each pitch selects a subset, which is what makes the pitches differ.
+- **Re-pitch** — either side can start a full rebuild; the other side gets a **72h
+  action window**. Once per 30 days on premium, extra rounds purchasable. The live
+  profile stays in circulation throughout, and an empty round costs nothing.
 - **Everyone swipes together** — the user swipes alongside their crew, not instead
   of them. Every swipe is labelled with who made it. Not a mode, just how it works.
 - **Date / Kiss / Pass** — swipe up = **Date, which IS the super like** (the original
@@ -108,6 +114,7 @@ vouch/
 
 ## Status
 
-Spec-only (revision 5). **No application code has been written yet.** §10.1–10.5 and
-§10.4a are resolved. Three remain: v1 carry-over (§10.6), lifecycle + 18\+ enforcement
-(§10.7), and crew supply / swiper-attention ceiling (§10.8).
+Spec-only (revision 6). **No application code has been written yet.** The v1 audit is
+in spec §13 — AI consolidation, roll-the-dice, the seeking profile and automatic
+referral notifications are all **pruned**. Two open items remain: lifecycle + 18\+
+enforcement (§10.7) and crew supply / swiper-attention ceiling (§10.8).
