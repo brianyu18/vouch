@@ -1,7 +1,7 @@
 ---
 title: Vouch — Product Spec v2
 status: current
-revision: 4
+revision: 5
 supersedes: CLAUDE.md @ 06b8b89 (v1, 2026-04-23)
 updated: 2026-08-25
 ---
@@ -50,10 +50,21 @@ revision 2 except symmetry, swiper-only accounts, v1 carry-over and lifecycle.
 |---|---|---|
 | 15 | **Swipers are optional.** A user can run the app solo; the crew is a core convenience, not a requirement | Resolves R2 §10.4 |
 | 16 | **Dual identity** — separate user profile and swiper profile, with a mode toggle | Resolves R2 §10.5 |
-| 17 | **Swiper blindness** — swipers never see likes or matches; the user shares explicitly | New §3.3 |
+| 17 | **Swiper visibility rule** — results are user-only, refined in R5 to expose a swiper's own hits | New §3.3 |
 | 18 | **Dates scale with headcount** — 1 per head (user + swipers), making invites a growth lever | Revises §4.1 / §8 |
 | 19 | **Kiss allocation dial** — per-swiper % caps on a shared daily pool; user uncapped | New §4.4 |
 | 20 | Premium candidates proposed (not approved) | New §8.3 |
+
+**Revision 5 (2026-08-25, same day)** — visibility, allocation and premium settled.
+
+| # | Change | Effect |
+|---|---|---|
+| 21 | **Swipers see the outcome of their own swipes** — a match they made is reported back | Revises §3.3 |
+| 22 | **Date grant flattens at the premium crew size**; extras sold in packs | §8.2 approved |
+| 23 | **Allocation is a pie, not caps** — slices are guaranteed and total ≤ 100% | Corrects §4.4 |
+| 24 | **Depleting allotment bar** for user and swipers — **free/core, not premium** | New §4.5 |
+| 25 | **Premium pillars A–E approved**, with re-pitch clarified and a build order | §8.3 |
+| 26 | **Swiper crew switcher** designed — the friends menu | Resolves §10.4a |
 
 ---
 
@@ -84,6 +95,42 @@ A person can be **both**. The two are separate profiles with a **mode toggle**:
 Someone may be a **swiper only** and never date on Vouch. That is a first-class
 account type and the app's cheapest growth funnel: swipers arrive for a friend, and
 some convert into users.
+
+### 1.3 Swiping for several friends — the crew switcher
+
+A swiper may serve **several friends at once**. The organising surface is a **friends
+menu**: a list of everyone you swipe for.
+
+**The friends menu.** One row per friend, each showing:
+- their avatar and name
+- **their depleting allotment bar** (§4.5) — how much of your slice is left today
+- **what needs you** — items held for approval, edit suggestions awaiting a reply
+- unread group-chat count
+
+Tapping a row loads **that friend's deck**, filtered by **that friend's** preferences —
+age range, distance, orientation, seeking criteria. The decks are genuinely different
+populations, which does most of the disambiguation work on its own.
+
+**The failure mode to design against is swiping for the wrong friend.** It is the one
+error that is both easy to make and impossible to explain away, so the current context
+must be unmissable:
+
+- The friend's **avatar and name stay pinned in the header** for the entire session —
+  never a screen you can scroll away from
+- Each friend carries a **consistent accent** across their deck, chip and bar, so the
+  context is legible peripherally, not just by reading
+- **Switching crews is explicit** — via the friends menu, never a swipe or a gesture
+  that could fire by accident
+- **No merged deck.** Combining several friends' decks into one queue is tempting for
+  efficiency and would be a mistake: it puts the burden of remembering who each card
+  is for onto the swiper, on every single card.
+
+**Notifications group by friend**, so a swiper with four crews gets four legible
+threads rather than one undifferentiated stream.
+
+> ⚠️ Open: whether to cap how many crews one person can join. A swiper in ten crews is
+> almost certainly giving nobody real attention, and the product's whole claim is that
+> these are *considered* judgements from someone who knows you. See §10.8.
 
 ## 2. Profile creation — the pitch
 
@@ -118,26 +165,31 @@ and the app stays alive when friends are idle.
 Every swipe carries an **attribution label** showing whether it came from a friend
 (and which one) or from the user themselves.
 
-### 3.3 Swiper blindness — results belong to the user
-**Swipers never see likes or matches.** Who liked the user back, what matched, and
-every conversation are visible to **the user alone**.
+### 3.3 What a swiper can see — own results only
+**The rule: a swiper sees the results of their own work, and nothing else.**
 
-The line is precise:
+Results of the user's dating life at large — who liked them, who they matched with
+independently, every conversation — belong to **the user alone**.
 
 | A swiper CAN see | A swiper CANNOT see |
 |---|---|
-| Their own swipe's fate in hold mode — *pending · approved · passed on* | Any incoming like |
-| The deck they are swiping | Any match |
-| Anything the user chooses to share | Any conversation |
+| **That a profile they swiped became a match** | Any incoming like nobody in the crew swiped |
+| Their own swipe's fate in hold mode — *pending · approved · passed on* | Matches the user made on their own |
+| The deck they are swiping | **Any conversation, ever** |
+| Anything the user chooses to share | Anything that happens after the match |
 
-The **activity log** is the user's private record of what the crew has been doing and
-what came of it. The user may **share an entry into the group chat** — *"Alex, your
-pick actually worked"* — but nothing crosses that line automatically.
+**Why the line moved here.** Full blindness protected privacy but severed the swiper's
+only feedback signal — a friend who never learns their pick worked has no evidence
+their taste is good, and no reason to keep swiping. Reporting back **their own hits**
+restores the loop while revealing nothing the swiper did not already act on: they
+chose that profile, so learning it matched exposes no person they had not already seen.
 
-> **Consequence to design for:** this deliberately cuts the swiper's natural reward
-> loop. Sharing a win back to the crew is now the *only* way a swiper learns their
-> judgement was good, so the share action must be one tap and genuinely celebratory.
-> It carries the entire swiper retention story.
+**User override.** The user can mute match-reporting globally or per swiper. Privacy is
+the default posture; the reward loop is the default setting.
+
+The **activity log** remains the user's private record. The user may still **share an
+entry into the group chat** — *"Alex, your pick actually worked"* — which stays the
+celebratory, high-signal version of the same news.
 
 ## 4. Swiping
 
@@ -167,9 +219,8 @@ a growth lever** — the user gets a stronger signal budget for recruiting, and 
 invitee may convert into a Vouch user themselves. Per head this is exactly Hinge's
 Rose rate (1/week/person), so scarcity per person is preserved even as the crew grows.
 
-> ⚠️ Recommended guardrail (not yet approved): **flatten the Date grant above the
-> premium crew size.** Tiers beyond premium sell more swipers but stop adding Dates,
-> or Date value erodes for everyone receiving them. See §8.2.
+> **Approved ceiling:** the grant flattens at the premium crew size (6 heads / 6
+> Dates). Beyond that, tiers sell swipers — not Dates. See §8.2.
 
 
 ### 4.2 Swipe the thing, not just the person *(Hinge structural steal)*
@@ -189,26 +240,38 @@ strongest when several friends land on the *same prompt or photo*.
 
 The user controls how much of the crew's budget each swiper may spend.
 
-**Kisses — percentage caps on a shared daily pool.**
-Each swiper gets a **percentage**, set on a **slideable dial**, of the user's daily
-Kiss pool. That percentage is a **maximum allotment, not a reservation.**
+**Kisses — a pie, sliced.** The user's daily Kiss pool is 100%. On a **slideable
+dial**, the user cuts it into slices, one per swiper.
 
-- All Kisses draw from **one shared daily pool** — the crew does not get private
-  budgets carved out of it
-- A swiper set to 30% may spend at most 30% of the day's pool
-- **The user is uncapped.** The user can always spend anything remaining in the pool,
-  regardless of what has been allocated. **The user always has precedence.**
-- Because caps are maxima rather than slices, **the allocations may total more than
-  100%** — the crew races for a shared pool with individual ceilings
-- Dial changes take effect at the next daily reset
+- **Allocations can never total more than 100%.** The dial enforces it — dragging one
+  slice wider compresses the others rather than overdrawing the pool.
+- A slice is a **guaranteed reservation**, not a race. A swiper set to 30% has 30% of
+  the day, and no other swiper can consume it.
+- **Whatever the user leaves unassigned is theirs**, and **the user has precedence
+  over the whole pie**: they may also spend from any slice a swiper has not used.
+- Slices reset daily; dial changes take effect at the next reset.
 
-**Dates** default to one per head and are reallocated the same way — the user may take
-a swiper's Date, hand it to another, or spend the whole pool personally.
+Reservations rather than ceilings mean **no swiper can starve the crew** by burning
+through the pool early — the failure mode a shared-pool model would have had.
 
-> ⚠️ Known consequence: with caps on a shared pool, an eager swiper can drain most of
-> the day's Kisses early and starve the rest of the crew. Mitigations to design:
-> show the **live remaining pool** to everyone, and consider an optional reserved
-> floor per swiper in a later revision.
+**Dates** run at one per head (§4.1) and are reallocated on the same dial — the user
+may take a swiper's Date, hand it to another, or spend the pool personally.
+
+### 4.5 The depleting bar — free, never premium
+
+**Everyone in the crew — the user and every swiper — sees a live bar showing their
+remaining allotment**, draining as swipes are spent. The user additionally sees the
+whole pie: every slice and how much of each is left.
+
+**This is core, not a premium feature.** Charging for it would mean charging a user to
+see how much of their own budget remains, which reads as hostile, and it would leave
+swipers spending blind — burning an allotment they cannot see is the fastest way to
+make a friend feel their effort was wasted. Premium sells **a bigger pie**, never
+*visibility into* the pie.
+
+Design note: the bar is also the app's most natural fluid element — it responds to
+every swipe, which is exactly the "lively and responsive" quality the design direction
+calls for, and it does that work without adding a single button.
 
 ## 5. The swipe screen
 
@@ -345,7 +408,7 @@ The paid pillar is **crew size**. Users buy a swiping workforce.
 | **Free, solo** | 0 | 1 | **1** | Daily cap |
 | **Free** | up to 3 | up to 4 | **up to 4** | Daily cap |
 | **Premium** | **5** | 6 | **6** | Unlimited |
-| **Higher tiers** | more (tiered) | more | see §8.2 | Unlimited |
+| **Higher tiers** | more (tiered) | more | **6 — flat (§8.2)** | Unlimited |
 
 **Dates scale with headcount** — one per person in the crew, per week (§4.1). This is
 deliberate: recruiting a swiper *increases the user's signal budget*, which makes the
@@ -355,7 +418,7 @@ rate, so individual scarcity is preserved as the crew grows.
 **Kisses** are capped **per user, never per swiper** (§6.5) and distributed by the
 allocation dial (§4.4). Premium buys resolution, never volume.
 
-### 8.2 Recommended guardrail — flatten Dates above premium *(not yet approved)*
+### 8.2 Date grant flattens above the premium crew — APPROVED
 
 Category precedent: Hinge grants **1 free Rose per week to every user regardless of
 tier** and sells extras in packs, monetising *unlimited ordinary likes* rather than
@@ -365,9 +428,11 @@ Vouch's headcount scaling is defensible up to premium (6 people, 6 Dates). Above
 it risks eroding what a Date means to everyone receiving one: a whale with a crew of
 twelve sends twelve Dates a week against a solo user's one.
 
-**Recommendation:** let Dates scale with headcount **up to the premium crew size**,
-then flatten. Tiers above premium sell more swipers, more resolution and unlimited
-Kisses — but additional Dates come from **packs**, not from the weekly grant.
+**Decision (approved):** Dates scale with headcount **up to the premium crew size — 6
+heads, 6 Dates per week — then flatten.** Tiers above premium sell more swipers, more
+resolution and unlimited Kisses; additional Dates come from **packs**, never from the
+weekly grant. The invite incentive stays fully intact across the free tier and into
+premium, which is exactly where recruitment matters.
 
 **Allocation.** The user assigns Dates across the crew or spends the pool personally;
 the user is never capped (§4.4).
@@ -377,16 +442,32 @@ free at launch while the graph is sparse.
 
 
 
-### 8.3 Candidate premium pillars *(proposed — not approved)*
+### 8.3 Premium pillars — APPROVED (A–E)
 
-Ranked by fit with the curation thesis. All four are things only Vouch can sell,
-because they all derive from the crew.
+All five approved 2026-08-25. Ranked by fit with the curation thesis — every one is
+something only Vouch can sell, because they all derive from the crew.
 
-**A. Re-pitch rounds — strongest.** The pitch (§2) is the app's best emotional beat and
-currently happens exactly once. Free users get one pitch round at signup; premium can
-**re-run the pitch** — send the crew back to rebuild the profile from scratch,
-periodically. Monetises the app's most distinctive moment, gives lapsed users a reason
-to return, and refreshes stale profiles, which helps match rates as a side effect.
+> **What is NOT premium, and never will be:** the user editing their own profile, and
+> swipers suggesting edits to it. Both are free, always, for everyone. See the
+> clarification under A.
+
+**A. Re-pitch rounds — strongest.**
+
+*Clarification, because this is easy to confuse with editing:*
+
+| Action | Who | Cost |
+|---|---|---|
+| User edits their own profile | User | **Free, always, unlimited** |
+| Swiper suggests an edit — a prompt rewrite, a photo swap, a new upload | Swiper | **Free, always, unlimited** |
+| **Re-pitch: the whole crew rebuilds a complete profile from scratch and the user picks a new winner** | Crew | **Premium** |
+
+A re-pitch is **not** an edit. It is re-running the §2 pitch competition end to end —
+every swiper submits a fresh, complete proposed profile, and the user picks a new
+winner or rejects them all. A teardown, not a tweak.
+
+Free tier gets **one pitch round, at signup**. Premium can re-run it. This monetises
+the app's most distinctive moment, gives lapsed users a real reason to return, and
+refreshes stale profiles, which lifts match rates as a side effect.
 
 **B. Profile insights.** Because swipes attach to a **specific prompt or photo**
 (§4.2), Vouch knows something no other dating app does: *which piece of a profile is
@@ -409,6 +490,18 @@ product at its most fun. Doubles as a growth loop.
 likes before matching is the highest-converting paid feature in the category, and it
 sits naturally inside swiper blindness (§3.3) since likes are already user-only. Least
 interesting, most likely to pay for the servers.
+
+### 8.4 Build order
+
+All five are approved, but shipping five paid features at launch splits attention and
+muddies the pitch. Recommended sequencing:
+
+| Wave | Ship | Why |
+|---|---|---|
+| **Launch** | Crew size · **E** (see who Kissed you) | Crew size is the pillar; E is the category's proven revenue engine and needs no new data |
+| **Launch + 1** | **A** (re-pitch) | The distinctive one. Needs the §2 pitch flow to be solid first — re-running a broken flow is worse than not offering it |
+| **Wave 2** | **B** (profile insights) · **C** (swiper scorecards) | Both are nearly free once swipe-target data (§4.2) has accumulated. They need *history* to say anything, so they cannot ship on day one anyway |
+| **Wave 3** | **D** (guest swipers) | Delightful and a growth loop, but it touches invites, permissions and crew slots — the most plumbing per unit of revenue |
 
 **Unifying story:** every tier is *a bigger, better-equipped crew.* Premium is not a
 feature list — it is more people helping you, with better tools.
@@ -446,9 +539,8 @@ signal, not a paywall) and can gate *who* the connection is behind premium later
 **Resolved in revision 4:** ~~10.4 symmetry~~ (swipers optional, §1.1) ·
 ~~10.5 swiper-only accounts~~ (dual identity + mode toggle, §1.2).
 
-**10.4a Context switching *(follow-on)*.** One person may swipe for several friends.
-How they switch between crews — and how the app keeps those decks from blurring
-together — is unspecified.
+**Resolved in revision 5:** ~~10.4a context switching~~ (crew switcher + friends menu,
+§1.3).
 
 **10.6 v1 carry-over.** Confirm these survive: user-supplied basics (name, age, sex,
 orientation, seeking preference, smoking/alcohol/drugs), the "seeking profile" of
@@ -459,10 +551,13 @@ is removed? Blocking, reporting, abuse paths, and **18+ age enforcement** are
 unspecified — the last matters more than usual because friends are acting inside
 someone else's dating life.
 
-**10.8 Crew supply *(new)*.** Premium sells more swipers, but most people cannot
-recruit eight friends willing to do unpaid work on their love life. Above ~5 the tier
-may be unsellable for supply reasons rather than price. Needs validation before the
-higher tiers are built.
+**10.8 Crew supply, and the swiper-attention ceiling.** Two halves of one problem.
+*Supply:* premium sells more swipers, but most people cannot recruit eight friends
+willing to do unpaid work on their love life — above ~5 the tier may be unsellable for
+supply reasons rather than price. *Attention:* the same person can join many crews, and
+a swiper in ten of them is not giving considered judgement to any of them, which is the
+entire product claim. A cap, a soft warning, or a quality signal may be needed. Both
+halves need validation before the higher tiers are built.
 
 
 ## 11. Design direction
