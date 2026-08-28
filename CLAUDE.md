@@ -20,9 +20,8 @@ alongside you. Matches come back to you, and only you, to review and chat.
   picks one or rejects all. Nothing circulates in multiple versions.
 - **10-item material pool** — the cap protects swipers from being handed a chore;
   each pitch selects a subset, which is what makes the pitches differ.
-- **Re-pitch** — either side can start a full rebuild; the other side gets a **72h
-  action window**. Once per 30 days on premium, extra rounds purchasable. The live
-  profile stays in circulation throughout, and an empty round costs nothing.
+- **The pitch happens once, at signup.** No re-runs; the profile evolves after that
+  through ordinary edits (user edits and swiper suggestions, both free forever).
 - **Everyone swipes together** — the user swipes alongside their crew, not instead
   of them. Every swipe is labelled with who made it. Not a mode, just how it works.
 - **Date / Kiss / Pass** — swipe up = **Date, which IS the super like** (the original
@@ -114,7 +113,6 @@ vouch/
 
 ## Status
 
-Spec-only (revision 6). **No application code has been written yet.** The v1 audit is
-in spec §13 — AI consolidation, roll-the-dice, the seeking profile and automatic
-referral notifications are all **pruned**. Two open items remain: lifecycle + 18\+
-enforcement (§10.7) and crew supply / swiper-attention ceiling (§10.8).
+Spec-only (revision 7). **No application code has been written yet.** All structural
+questions are closed — safety and accountability in §14, crew supply in §15, the v1
+audit in §13. Remaining: the call's free-grant cadence (§10.9) and naming (§10.10).

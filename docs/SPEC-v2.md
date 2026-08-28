@@ -1,7 +1,7 @@
 ---
 title: Vouch — Product Spec v2
 status: current
-revision: 6
+revision: 7
 supersedes: CLAUDE.md @ 06b8b89 (v1, 2026-04-23)
 updated: 2026-08-25
 ---
@@ -76,6 +76,16 @@ revision 2 except symmetry, swiper-only accounts, v1 carry-over and lifecycle.
 | 30 | **Guest swipers: 1/month on premium**, more purchasable | Revises §8.3 D |
 | 31 | **Seeking profile CUT** — becomes a selectable prompt instead | Revises §13 |
 | 32 | **v1 audit** — every v1 feature kept, folded or pruned | New §13 |
+
+**Revision 7 (2026-08-27)** — re-pitch cut, the call added, §10.7 and §10.8 closed.
+
+| # | Change | Effect |
+|---|---|---|
+| 33 | **Re-pitch CUT entirely** — the pitch happens once, at signup. Reverses #28/#29 | §2.3 removed |
+| 34 | **The 90-second call** — premium, request-based, charged only if accepted | New §8.3 A |
+| 35 | **Swiper accountability** solved with zero added user friction | Resolves §10.7 |
+| 36 | **18+ enforcement** via app-store age signals, not ID checks — applied to swipers too | Resolves §10.7 |
+| 37 | **Crew capped at 5; surge sold as guest passes** — no unfillable tiers | Resolves §10.8 |
 
 ---
 
@@ -179,50 +189,11 @@ user in the wild. The competition happens *before* launch, not in the deck.
 > of yourself they think is most compelling, and you get to see how your friends
 > actually see you.
 
-Swipers may continue to **suggest edits** (a prompt rewrite, a swap, a new upload)
-after launch; the user approves or rejects each one. Editing — by the user or as a
-swiper suggestion — is **free forever** (§8.3 A). **No AI.** All content is authored by
-the user and their friends.
-
-### 2.3 Re-pitch — running the competition again
-
-A re-pitch is a **full teardown**: every swiper rebuilds a complete profile from
-scratch and the user picks a new winner or rejects them all. It is not an edit.
-
-**Either side can start one.** A swiper who thinks the current profile is not doing
-their friend justice can propose a re-pitch; so can the user.
-
-**Swiper-initiated rounds need the user's confirmation before they open.** A re-pitch
-spends the user's monthly allowance and rewrites the user's profile, so a friend
-*proposes* and the user *starts*. Without this, one enthusiastic swiper could burn the
-allowance without asking, and five swipers could trigger five rounds.
-
-**The action window.** When a round opens, every swiper is notified and has a fixed
-window — **default 72 hours** — to submit.
-
-- Submissions appear as they arrive; the user can review early and **close the round
-  the moment they have a winner**
-- A **halfway reminder** nudges swipers who have not submitted
-- At expiry the round closes with whatever arrived. Non-submitters simply do not appear
-- **If nobody submits, the round is void and the allowance is not consumed** — a user
-  must never lose their monthly re-pitch to unresponsive friends
-- **The current profile stays live in circulation for the entire round.** There is no
-  downtime, no gap in the deck, and nothing breaks while the user waits
-
-72 hours is the deliberate middle: 24 is too short for a friend to do real curation,
-a week leaves the user hanging.
-
-**Cadence — once per 30 days.** A rolling 30-day cool-down from the last *completed*
-round, not a calendar month (which would allow the 31st and the 1st back to back).
-
-- **Free:** one pitch round at signup
-- **Premium:** one re-pitch per 30 days
-- **Either tier:** extra rounds **purchasable**, same pack model as Dates
-
-The binding constraint here is **crew fatigue, not user demand.** Unlimited re-pitches
-would let a restless user ask three friends to rebuild a profile weekly, which burns
-out the volunteers the entire product depends on — and cheapens the event, which is
-special precisely because it is rare.
+**The pitch happens once, at signup.** There is no re-run. After that the profile
+evolves through ordinary editing: swipers **suggest edits** (a prompt rewrite, a swap,
+a new upload) and the user approves or rejects each one, and the user edits freely at
+any time. Both are **free forever**. **No AI** — all content is authored by the user
+and their friends.
 
 ## 3. Who swipes — everyone, together
 
@@ -520,23 +491,36 @@ something only Vouch can sell, because they all derive from the crew.
 > swipers suggesting edits to it. Both are free, always, for everyone. See the
 > clarification under A.
 
-**A. Re-pitch rounds — strongest.**
+**A. The 90-second call *(name TBD — "The Ninety")* — strongest.**
 
-*Clarification, because this is easy to confuse with editing:*
+Premium grants the user a **call request** they may send to **a match of their
+choosing**. The match accepts or declines; **the grant is only consumed if the call is
+accepted.** A declined or ignored request costs nothing.
 
-| Action | Who | Cost |
-|---|---|---|
-| User edits their own profile | User | **Free, always, unlimited** |
-| Swiper suggests an edit — a prompt rewrite, a photo swap, a new upload | Swiper | **Free, always, unlimited** |
-| **Re-pitch: the whole crew rebuilds a complete profile from scratch and the user picks a new winner** | Crew | **Premium** |
+The point is an **elevator pitch**: ninety seconds is long enough to hear whether
+there is a spark and far too short to be a date. It gives a user who has been trading
+polite messages for a week a reason to actually reach out, which is the single hardest
+transition in online dating.
 
-A re-pitch is **not** an edit. It is re-running the §2 pitch competition end to end —
-every swiper submits a fresh, complete proposed profile, and the user picks a new
-winner or rejects them all. A teardown, not a tweak.
+**Mechanics**
 
-Free tier gets **one pitch round, at signup**. Premium can re-run it. This monetises
-the app's most distinctive moment, gives lapsed users a real reason to return, and
-refreshes stale profiles, which lifts match rates as a side effect.
+- **Audio, not video.** Video pre-meeting is high-friction and higher-risk; ninety
+  seconds of someone's actual voice is a strong signal at a fraction of the exposure
+- **Hard 90-second timer.** At zero, both sides get a mutual *"keep talking?"* prompt —
+  if both accept, the call continues unmetered. The scarcity creates the spark; it
+  should not then punish a spark that caught
+- **In-app only.** Phone numbers are never exposed to either side
+- The recipient may **accept, decline silently, propose another time, or block**.
+  A request **expires after 48 hours** so it never lingers
+- **One outstanding request per match**, and no repeat request after a decline
+- Extra call requests **purchasable** in packs
+
+**Only the user can initiate a call.** A swiper never can — a call is a conversation,
+and swipers do not touch conversations (§3.3). This is the same line that governs
+messages, applied to voice.
+
+*Open: the free grant is written as **1 per month**, matching the guest-swiper
+cadence. Weekly would make it a habit rather than an event; monthly keeps it scarce.*
 
 **B. Profile insights.** Because swipes attach to a **specific prompt or photo**
 (§4.2), Vouch knows something no other dating app does: *which piece of a profile is
@@ -555,7 +539,7 @@ swipe for a **single session** without occupying a permanent crew slot — a sib
 visiting, a table at a bar. Fits the everyone-swipes-together spirit, and every guest
 is an unconverted user meeting the product at its most fun. Doubles as a growth loop.
 
-Rationed for the same reason as re-pitches: a guest sees the user's deck and spends
+Rationed for the same reason as calls: a guest sees the user's deck and spends
 from the user's pie, so unlimited guests would be an unlimited hole in both privacy and
 budget. Extra guest passes sell in packs.
 
@@ -572,7 +556,7 @@ muddies the pitch. Recommended sequencing:
 | Wave | Ship | Why |
 |---|---|---|
 | **Launch** | Crew size · **E** (see who Kissed you) | Crew size is the pillar; E is the category's proven revenue engine and needs no new data |
-| **Launch + 1** | **A** (re-pitch) | The distinctive one. Needs the §2 pitch flow to be solid first — re-running a broken flow is worse than not offering it |
+| **Launch + 1** | **A** (the 90-second call) | The distinctive one, and the highest-risk to build — real-time audio, abuse handling, scheduling. Worth doing properly rather than early |
 | **Wave 2** | **B** (profile insights) · **C** (swiper scorecards) | Both are nearly free once swipe-target data (§4.2) has accumulated. They need *history* to say anything, so they cannot ship on day one anyway |
 | **Wave 3** | **D** (guest swipers) | Delightful and a growth loop, but it touches invites, permissions and crew slots — the most plumbing per unit of revenue |
 
@@ -618,19 +602,13 @@ signal, not a paywall) and can gate *who* the connection is behind premium later
 **Resolved in revision 6:** ~~10.6 v1 carry-over~~ — full audit in §13. Seeking profile
 cut, referral notifications pruned, everything else kept or folded.
 
-**10.7 Lifecycle and safety.** What happens to in-flight and held swipes when a swiper
-is removed? Blocking, reporting, abuse paths, and **18+ age enforcement** are
-unspecified — the last matters more than usual because friends are acting inside
-someone else's dating life.
+**Resolved in revision 7:** ~~10.7 lifecycle and safety~~ (§14) ·
+~~10.8 crew supply~~ (§15).
 
-**10.8 Crew supply, and the swiper-attention ceiling.** Two halves of one problem.
-*Supply:* premium sells more swipers, but most people cannot recruit eight friends
-willing to do unpaid work on their love life — above ~5 the tier may be unsellable for
-supply reasons rather than price. *Attention:* the same person can join many crews, and
-a swiper in ten of them is not giving considered judgement to any of them, which is the
-entire product claim. A cap, a soft warning, or a quality signal may be needed. Both
-halves need validation before the higher tiers are built.
+**10.9 The call — free-grant cadence.** Written as 1 per month (§8.3 A); weekly would
+make it a habit rather than an event. Open.
 
+**10.10 Naming.** The 90-second call has no name. *"The Ninety"* is the working label.
 
 ## 11. Design direction
 
@@ -677,7 +655,7 @@ Every line of the v1 spec (`06b8b89`), resolved against v2. This closes §10.6.
 | v1 feature | Folded into |
 |---|---|
 | Users can search vouchers to find friends already on the app | **The swiper invite flow + contacts matching (§9).** Two parallel discovery systems would be redundant; there is one now |
-| Microtransactions — extra profile rolls beyond the initial 3 | **Re-pitch packs (§2.3).** Same "some free, buy more" shape, now attached to a human event instead of an AI reroll |
+| Microtransactions — extra profile rolls beyond the initial 3 | **Date packs, guest passes and call packs.** Same "some free, buy more" shape, spread across three human features instead of one AI reroll |
 | Free tier: limited daily swipes | **The Kiss pool + allocation pie (§4.4)** |
 | Premium: unlimited swipes | **Kept**, but now the *second* thing premium sells; crew size is the pillar (§8.1) |
 
@@ -686,7 +664,7 @@ Every line of the v1 spec (`06b8b89`), resolved against v2. This closes §10.6.
 | v1 feature | Why it is gone |
 |---|---|
 | **AI (Claude) consolidates voucher submissions into one cohesive profile** | Cut at the pivot. It undercut the entire human-vouching premise — friends "vouched" while a model wrote the words |
-| **"Roll the dice" to regenerate, 3 free rolls, pay for more** | Died with the AI. **Re-pitch (§2.3) is its human successor** — same instinct (try again, some free, buy more), but the new version is your friends rebuilding it rather than a model rerolling it |
+| **"Roll the dice" to regenerate, 3 free rolls, pay for more** | Died with the AI, and **has no successor**. A human re-pitch was specced in revision 6 and cut in revision 7: past the first round at signup it is churn, not value. The pitch happens **once**, and the profile evolves after that through ordinary edits |
 | **Users create a "seeking profile" with traits they want in a match** | **Cut.** Modern dating apps have largely abandoned structured "what I want" forms — they read as a wishlist, they date badly, and nobody fills them in honestly. Replaced by a **selectable prompt** (§13.4) |
 | **When a voucher's referred user joins, the other person they vouched for gets notified (if preferences align)** | **Pruned as an automatic notification.** It pushes an unrequested introduction between two people who do not know each other, on the strength of a shared friend — a privacy problem, and it clashes with swiper blindness (§3.3) and with the user's control over their own deck. **The underlying graph fact survives** as passive social proof (§9): "you both know Alex" shown on the profile. Intrusive push becomes quiet trust signal |
 | **"Possible premium voucher referral features"** | Vague in v1, and the concrete version of it is now pruned above. Premium is crew size (§8.1) |
@@ -698,7 +676,116 @@ selectable prompts** in the pool. A user who wants to say it can pick that promp
 user who does not, does not. It occupies one of the 10 material slots like anything
 else, which is the right price for it.
 
-**Knock-on to design for:** v1's seeking profile was also, implicitly, the brief a
-swiper would read before acting. With it gone, **the brief lives in the group chat
-(§7)** — the user tells their crew what they are after in conversation, which is more
-natural, more current, and more honest than a form nobody updates.
+**No brief is needed to replace it.** Swipers are people who already know the user —
+that is the premise of the product, not an assumption to be shored up. A friend who
+needs a written specification of your taste is not someone who should be swiping for
+you. Anything situational gets said in the group chat like it would in life.
+
+## 14. Safety, accountability and lifecycle
+
+### 14.1 Swiper accountability — invisible by design
+
+**The concern:** the person being swiped never sees the swiper, only the user. So a
+report, a block or a ban lands on the **user's** account for something a friend did.
+
+**First, the problem is smaller than it looks.** Every message already routes through
+the user for approval (§6.2), so the user has *seen and sent* every word that reaches
+a stranger. Messages are genuinely the user's responsibility. A swipe on its own
+cannot harass anyone. The independent surface a swiper actually has is narrow.
+
+**The real exploit is different, and it matters:** a banned account could simply become
+a swiper for a friend and keep browsing the app through them.
+
+**The solution adds zero taps for a normal user**, because the data model already
+carries it:
+
+| Requirement | Cost |
+|---|---|
+| Every swipe, edit and message draft is attributed to its actor internally | **Free** — already required to render the attribution chip (§4.2) |
+| Moderation can resolve any report to a specific action, and therefore a specific actor | **Free** — a query, not a feature |
+| Swipers are real accounts with their own identity | **Free** — dual identity already exists (§1.2) |
+| **A banned account cannot hold the swiper role.** Bans propagate across both identities | Small, one-time |
+| The user can see their own crew's action log | **Free** — that is the activity log (§3.3) |
+
+**Nothing above is user-facing.** Accountability is an internal attribution property,
+not a workflow. The only surface a user ever sees is a **notice when their own crew is
+implicated** — *"swipes from Alex have been reported twice"* — and that is useful
+information, not friction.
+
+**Liability model:** messages are **shared** (the swiper drafted, the user approved and
+sent). Swipes are **the swiper's alone**. Moderation weights accordingly rather than
+banning a user for a friend's judgement.
+
+### 14.2 18+ enforcement — app-store signals, not ID checks
+
+**Researched 2026-08-27.** The 2025–26 age-verification wave puts verification at the
+**app store**, not inside the app. Utah, Texas and Louisiana passed App Store
+Accountability Acts in 2025 (California following); Texas took effect 1 Jan 2026 and a
+Fifth Circuit ruling in May 2026 let it proceed on an interim basis while challenges
+continue. The mechanism: **the store verifies age and exposes it to developers through
+an age-signal API**, and developers must label the app by age category and consume that
+signal.
+
+**So document/ID verification is not the required mechanism, and should not be the
+signup flow.** An ID scan at registration would gut the funnel to solve a problem the
+law is solving elsewhere.
+
+| Layer | Use | Why |
+|---|---|---|
+| **App-store age signal** | **Primary** | Legally aligned, zero friction, and the mechanism the statutes actually name |
+| **Self-declared date of birth** | **Baseline** | Industry standard; the app's own defensible record |
+| **Document / ID verification** | **Escalation only** | For appeals and age-related reports — never at signup |
+| **Instagram / Facebook login** | **Not an age signal** | Those platforms admit 13+, so the login proves *identity*, not adulthood. Keep it for auth and photo import (§12) only |
+
+**The Vouch-specific requirement, which no off-the-shelf compliance covers: run the
+same gate on swipers.** A sixteen-year-old swiping adult dating profiles on behalf of
+an older sibling is the scenario that ends an app, and nothing in the standard
+dating-app playbook contemplates a non-dating participant inside the product. **Every
+swiper passes the same 18+ check as every user, before they are allowed a deck.**
+
+### 14.3 Lifecycle — removing a swiper
+
+When the user removes a swiper, immediately:
+
+- **Deck access is revoked.** No further swipes are possible
+- **Held swipes are dumped, not auto-released.** The 24h auto-send rule (§6.4) does not
+  apply to someone the user has just removed — the removal *is* the decision
+- **Pending edit suggestions are withdrawn**
+- **Group chat access ends.** Prior messages remain in history
+- **Existing attribution stands.** Matches that swiper made keep their chip; that is a
+  historical fact, and rewriting it would corrupt the activity log
+
+The removed swiper is told they were removed, without a reason. Their own swiper
+profile and any other crews they belong to are untouched.
+
+## 15. Crew supply and the attention ceiling
+
+Two halves of the same problem, with one answer.
+
+### 15.1 Supply — cap the crew at 5, sell surge as guest passes
+
+**The problem with selling tiers above 5 permanent swipers:** most people cannot
+recruit eight friends willing to do unpaid work on their love life. Users would not
+decline to buy the tier — they would buy it and then fail to fill it, which is worse
+than not selling it. An empty crew slot is a visible reminder of a favour nobody
+granted.
+
+**The answer:** **permanent crew caps at 5** (premium). Everything above that is sold
+as **guest passes** (§8.3 D) — one-session swipers who need no permanent commitment.
+
+This is strictly better in three ways: there is **no unfillable tier**; the "swiping
+workforce" fantasy is still delivered, just as surge capacity rather than standing
+headcount; and a consumable repeat purchase monetises better than a one-time tier
+upgrade. It also gives a friend who cannot commit to a crew a way to help anyway.
+
+### 15.2 Attention — make it visible, do not police it
+
+A swiper in ten crews is not giving considered judgement to any of them, which is the
+entire product claim.
+
+**Do not hard-cap it.** Use a visible signal instead: show **"Alex swipes for 6 people"**
+on the crew roster and let the user judge. Swiper scorecards (§8.3 C) do the rest —
+hit rate is exactly the measure that separates a friend paying attention from someone
+mashing through five decks a night.
+
+A hard ceiling only becomes necessary if crew-farming appears in the data.
