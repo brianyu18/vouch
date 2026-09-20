@@ -8,7 +8,7 @@ subset of that pool; you pick the one that becomes your real profile, or reject 
 all and build your own. Then your friends go out and swipe on your behalf —
 alongside you. Matches come back to you, and only you, to review and chat.
 
-> **Full product spec: [`docs/SPEC-v2.md`](docs/SPEC-v2.md)** (revision 8) — read it
+> **Full product spec: [`docs/SPEC-v2.md`](docs/SPEC-v2.md)** (revision 9) — read it
 > before any build work. This file is the short current-context summary.
 >
 > The v1 concept (friends author a profile, **AI consolidates** it, "roll the dice"
@@ -65,9 +65,10 @@ Dates run at **1 per crew head/week** (so recruiting a swiper raises your signal
 budget — the invite incentive) and stop at 6, because headcount stops at 6. Extra
 Dates sell in packs; a guest spends from the existing pool rather than adding to it.
 
-Approved pillars **A–E**: the **90-second call** (a request to a match, charged only if
-accepted, audio, hard-timed with a mutual "keep talking?" at zero — only the user can
-initiate), profile insights, swiper scorecards, guest swipers (1/month, more
+Approved pillars **A–E**: **Ring** — the 90-second call, "ring your crush" (a request
+to a match, receiver must accept, charged only on acceptance, audio, hard-timed with a
+mutual "keep talking?" at zero, only the user can initiate; **free 1/month, premium
+3/month**, more purchasable), profile insights, swiper scorecards, guest swipers (1/month, more
 purchasable), and "see who Kissed you". Build order in spec §8.4 — crew size + "see who
 Kissed you" at launch, the call next.
 
@@ -124,7 +125,7 @@ vouch/
 
 ## Status
 
-Spec-only (revision 8). **No application code has been written yet.** All structural
-questions are closed — safety and accountability in §14, crew supply and the crew
-ceiling in §15, the v1 audit in §13. Remaining: the call's free-grant cadence (§10.9)
-and its name (§10.10).
+Spec-only (revision 9). **No application code has been written yet.** **No open
+questions remain** — the spec is declared sufficient for an MVP. Next: design mockups
+(5 × 3 screens: profile, swipe cards, dashboard/HUD) for approval, then a UI-first
+build.

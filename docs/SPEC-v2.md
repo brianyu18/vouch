@@ -1,7 +1,7 @@
 ---
 title: Vouch — Product Spec v2
 status: current
-revision: 8
+revision: 9
 supersedes: CLAUDE.md @ 06b8b89 (v1, 2026-04-23)
 updated: 2026-09-19
 ---
@@ -92,6 +92,14 @@ revision 2 except symmetry, swiper-only accounts, v1 carry-over and lifecycle.
 | # | Change | Effect |
 |---|---|---|
 | 38 | **There is no tier above premium.** 5 permanent swipers is the ceiling for every user; extra capacity is **rented** via guest passes, never bought as headcount | Fixes §8.1 / §8.2 / §4.1 against §15.1 |
+
+**Revision 9 (2026-09-19)** — the call is named and rationed; spec declared build-ready.
+
+| # | Change | Effect |
+|---|---|---|
+| 39 | The call is **Ring** — "ring your crush" | Resolves §10.10 |
+| 40 | **Ring is core, not premium-only:** free 1/month, **premium 3/month**, more purchasable | Resolves §10.9; revises §8.3 A |
+| 41 | **Spec declared sufficient for MVP.** Next: design mockups → approval → build | — |
 
 ---
 
@@ -510,11 +518,20 @@ something only Vouch can sell, because they all derive from the crew.
 > swipers suggesting edits to it. Both are free, always, for everyone. See the
 > clarification under A.
 
-**A. The 90-second call *(name TBD — "The Ninety")* — strongest.**
+**A. Ring — the 90-second call. "Ring your crush." — strongest.**
 
-Premium grants the user a **call request** they may send to **a match of their
-choosing**. The match accepts or declines; **the grant is only consumed if the call is
-accepted.** A declined or ignored request costs nothing.
+Every user gets a **Ring request** they may send to **a match of their choosing**. The
+match accepts or declines — **the receiving user must accept** — and **the grant is
+only consumed if the call is accepted.** A declined or ignored request costs nothing.
+
+| Tier | Rings per month |
+|---|---|
+| Free | **1** |
+| Premium | **3** |
+| Either | more **purchasable** in packs |
+
+Ring is **core with a premium multiplier**, the same shape as Date: the feature is never
+paywalled, the *count* is scarce, and premium triples it.
 
 The point is an **elevator pitch**: ninety seconds is long enough to hear whether
 there is a spark and far too short to be a date. It gives a user who has been trading
@@ -538,8 +555,8 @@ transition in online dating.
 and swipers do not touch conversations (§3.3). This is the same line that governs
 messages, applied to voice.
 
-*Open: the free grant is written as **1 per month**, matching the guest-swiper
-cadence. Weekly would make it a habit rather than an event; monthly keeps it scarce.*
+Monthly rather than weekly is deliberate: weekly would make Ring a habit; monthly
+keeps it an event.
 
 **B. Profile insights.** Because swipes attach to a **specific prompt or photo**
 (§4.2), Vouch knows something no other dating app does: *which piece of a profile is
@@ -575,7 +592,7 @@ muddies the pitch. Recommended sequencing:
 | Wave | Ship | Why |
 |---|---|---|
 | **Launch** | Crew size · **E** (see who Kissed you) | Crew size is the pillar; E is the category's proven revenue engine and needs no new data |
-| **Launch + 1** | **A** (the 90-second call) | The distinctive one, and the highest-risk to build — real-time audio, abuse handling, scheduling. Worth doing properly rather than early |
+| **Launch + 1** | **A** (Ring) | The distinctive one, and the highest-risk to build — real-time audio, abuse handling, scheduling. Worth doing properly rather than early |
 | **Wave 2** | **B** (profile insights) · **C** (swiper scorecards) | Both are nearly free once swipe-target data (§4.2) has accumulated. They need *history* to say anything, so they cannot ship on day one anyway |
 | **Wave 3** | **D** (guest swipers) | Delightful and a growth loop, but it touches invites, permissions and crew slots — the most plumbing per unit of revenue |
 
@@ -624,10 +641,10 @@ cut, referral notifications pruned, everything else kept or folded.
 **Resolved in revision 7:** ~~10.7 lifecycle and safety~~ (§14) ·
 ~~10.8 crew supply~~ (§15).
 
-**10.9 The call — free-grant cadence.** Written as 1 per month (§8.3 A); weekly would
-make it a habit rather than an event. Open.
+**Resolved in revision 9:** ~~10.9 cadence~~ (free 1/month, premium 3/month, §8.3 A) ·
+~~10.10 naming~~ (**Ring**).
 
-**10.10 Naming.** The 90-second call has no name. *"The Ninety"* is the working label.
+**No open questions remain. The spec is sufficient to build an MVP against.**
 
 ## 11. Design direction
 
