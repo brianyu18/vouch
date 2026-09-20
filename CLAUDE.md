@@ -8,7 +8,7 @@ subset of that pool; you pick the one that becomes your real profile, or reject 
 all and build your own. Then your friends go out and swipe on your behalf —
 alongside you. Matches come back to you, and only you, to review and chat.
 
-> **Full product spec: [`docs/SPEC-v2.md`](docs/SPEC-v2.md)** (revision 2) — read it
+> **Full product spec: [`docs/SPEC-v2.md`](docs/SPEC-v2.md)** (revision 8) — read it
 > before any build work. This file is the short current-context summary.
 >
 > The v1 concept (friends author a profile, **AI consolidates** it, "roll the dice"
@@ -47,21 +47,32 @@ alongside you. Matches come back to you, and only you, to review and chat.
 
 ## Premium — the swiping crew
 
-The paid pillar is **crew size**: 3 swipers free → **5 on premium** → tiered beyond.
+The paid pillar is **crew size**: 3 swipers free → **5 on premium**, which is the
+**hard ceiling for every user at every price. There is no tier above premium.**
 
-| Tier | Swipers | Crew | Weekly Dates *(1/head)* | Kisses |
+| Tier | Permanent swipers | Crew | Weekly Dates *(1/head)* | Kisses |
 |---|---|---|---|---|
 | Free, solo | 0 | 1 | 1 | daily cap |
 | Free | up to 3 | up to 4 | up to 4 | daily cap |
-| Premium | 5 | 6 | 6 | unlimited |
-| Higher | more | more | **6 — flat** | unlimited |
+| Premium | **5 — the ceiling** | 6 | 6 | unlimited |
+
+Additional swiping capacity is **rented, not bought**: pay to invite a **temporary
+swiper** for a single session — the guest pass. Headcount is capped; surge is
+consumable. Selling a tenth permanent slot would sell a favour the buyer cannot
+collect on.
 
 Dates run at **1 per crew head/week** (so recruiting a swiper raises your signal
-budget — the invite incentive) and **flatten at the premium crew size**; extras sell in
-packs. Approved pillars **A–E**: re-pitch rounds, profile insights, swiper scorecards,
-guest swipers, "see who Kissed you". Build order in spec §8.4 — crew size + E at
-launch, re-pitch next. **Never premium:** the user editing their own profile, or
-swipers suggesting edits. Both free forever.
+budget — the invite incentive) and stop at 6, because headcount stops at 6. Extra
+Dates sell in packs; a guest spends from the existing pool rather than adding to it.
+
+Approved pillars **A–E**: the **90-second call** (a request to a match, charged only if
+accepted, audio, hard-timed with a mutual "keep talking?" at zero — only the user can
+initiate), profile insights, swiper scorecards, guest swipers (1/month, more
+purchasable), and "see who Kissed you". Build order in spec §8.4 — crew size + "see who
+Kissed you" at launch, the call next.
+
+**Never premium:** the user editing their own profile, or swipers suggesting edits.
+Both free forever. **Re-pitch does not exist** — the pitch happens once, at signup.
 
 ## Social graph — settled
 
@@ -113,6 +124,7 @@ vouch/
 
 ## Status
 
-Spec-only (revision 7). **No application code has been written yet.** All structural
-questions are closed — safety and accountability in §14, crew supply in §15, the v1
-audit in §13. Remaining: the call's free-grant cadence (§10.9) and naming (§10.10).
+Spec-only (revision 8). **No application code has been written yet.** All structural
+questions are closed — safety and accountability in §14, crew supply and the crew
+ceiling in §15, the v1 audit in §13. Remaining: the call's free-grant cadence (§10.9)
+and its name (§10.10).

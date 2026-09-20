@@ -1,9 +1,9 @@
 ---
 title: Vouch — Product Spec v2
 status: current
-revision: 7
+revision: 8
 supersedes: CLAUDE.md @ 06b8b89 (v1, 2026-04-23)
-updated: 2026-08-25
+updated: 2026-09-19
 ---
 
 # Vouch — Product Spec v2
@@ -86,6 +86,12 @@ revision 2 except symmetry, swiper-only accounts, v1 carry-over and lifecycle.
 | 35 | **Swiper accountability** solved with zero added user friction | Resolves §10.7 |
 | 36 | **18+ enforcement** via app-store age signals, not ID checks — applied to swipers too | Resolves §10.7 |
 | 37 | **Crew capped at 5; surge sold as guest passes** — no unfillable tiers | Resolves §10.8 |
+
+**Revision 8 (2026-09-19)** — one contradiction closed.
+
+| # | Change | Effect |
+|---|---|---|
+| 38 | **There is no tier above premium.** 5 permanent swipers is the ceiling for every user; extra capacity is **rented** via guest passes, never bought as headcount | Fixes §8.1 / §8.2 / §4.1 against §15.1 |
 
 ---
 
@@ -260,7 +266,9 @@ invitee may convert into a Vouch user themselves. Per head this is exactly Hinge
 Rose rate (1/week/person), so scarcity per person is preserved even as the crew grows.
 
 > **Approved ceiling:** the grant flattens at the premium crew size (6 heads / 6
-> Dates). Beyond that, tiers sell swipers — not Dates. See §8.2.
+> Dates) — which is also where permanent crew stops. There is nothing above it to
+> scale into. Extra Dates come from **packs**; extra swiping capacity comes from
+> **guest passes**. See §8.2 and §15.1.
 
 
 ### 4.2 Swipe the thing, not just the person *(Hinge structural steal)*
@@ -439,21 +447,31 @@ judgement paid off — so it carries the crew's whole reward loop.
 
 ## 8. Premium — the swiping crew
 
-The paid pillar is **crew size**. Users buy a swiping workforce.
+The paid pillar is **crew size**. Users buy a swiping workforce — up to a point, and
+then they rent one.
 
 ### 8.1 The tiers
 
-| Tier | Swipers | Crew size | Weekly Dates *(1 per head)* | Kisses |
+| Tier | Permanent swipers | Crew size | Weekly Dates *(1 per head)* | Kisses |
 |---|---|---|---|---|
 | **Free, solo** | 0 | 1 | **1** | Daily cap |
 | **Free** | up to 3 | up to 4 | **up to 4** | Daily cap |
-| **Premium** | **5** | 6 | **6** | Unlimited |
-| **Higher tiers** | more (tiered) | more | **6 — flat (§8.2)** | Unlimited |
+| **Premium** | **5 — the ceiling** | 6 | **6** | Unlimited |
+
+**There is no tier above premium.** Five permanent swipers is the hard cap for every
+user, at every price. Additional swiping capacity is **rented, not bought**: a user who
+wants more hands pays to invite a **temporary swiper** for a single session — the guest
+pass (§8.3 D). Headcount is capped; surge is consumable.
+
+This is the §15.1 decision applied to pricing. Selling a tenth permanent slot would sell
+a favour the buyer cannot collect on; selling a guest pass sells capacity they can use
+tonight.
 
 **Dates scale with headcount** — one per person in the crew, per week (§4.1). This is
 deliberate: recruiting a swiper *increases the user's signal budget*, which makes the
 invite a growth lever rather than a favour to ask. Per head it is exactly Hinge's Rose
-rate, so individual scarcity is preserved as the crew grows.
+rate, so individual scarcity is preserved as the crew grows. Because headcount stops at
+6, so does the grant.
 
 **Kisses** are capped **per user, never per swiper** (§6.5) and distributed by the
 allocation dial (§4.4). Premium buys resolution, never volume.
@@ -464,15 +482,16 @@ Category precedent: Hinge grants **1 free Rose per week to every user regardless
 tier** and sells extras in packs, monetising *unlimited ordinary likes* rather than
 the scarce signal — because a Rose is worth something only while Roses are rare.
 
-Vouch's headcount scaling is defensible up to premium (6 people, 6 Dates). Above that
-it risks eroding what a Date means to everyone receiving one: a whale with a crew of
-twelve sends twelve Dates a week against a solo user's one.
+Vouch's headcount scaling is defensible up to premium (6 people, 6 Dates). Letting it
+run further would erode what a Date means to everyone receiving one: a whale with a
+crew of twelve would send twelve Dates a week against a solo user's one.
 
 **Decision (approved):** Dates scale with headcount **up to the premium crew size — 6
-heads, 6 Dates per week — then flatten.** Tiers above premium sell more swipers, more
-resolution and unlimited Kisses; additional Dates come from **packs**, never from the
-weekly grant. The invite incentive stays fully intact across the free tier and into
-premium, which is exactly where recruitment matters.
+heads, 6 Dates per week — and stop there**, which is also where permanent crew stops
+(§8.1). Additional Dates come from **packs**, never from the weekly grant, and a guest
+swiper spends from the existing pool rather than adding to it. The invite incentive
+stays fully intact across the free tier and into premium, which is exactly where
+recruitment matters.
 
 **Allocation.** The user assigns Dates across the crew or spends the pool personally;
 the user is never capped (§4.4).
@@ -770,8 +789,10 @@ decline to buy the tier — they would buy it and then fail to fill it, which is
 than not selling it. An empty crew slot is a visible reminder of a favour nobody
 granted.
 
-**The answer:** **permanent crew caps at 5** (premium). Everything above that is sold
-as **guest passes** (§8.3 D) — one-session swipers who need no permanent commitment.
+**The answer:** **permanent crew caps at 5** (premium), for everyone, at every price —
+**there is no higher tier** (§8.1). Everything above that is sold as **guest passes**
+(§8.3 D): pay to invite a *temporary* swiper for a single session, with no permanent
+commitment on either side.
 
 This is strictly better in three ways: there is **no unfillable tier**; the "swiping
 workforce" fantasy is still delivered, just as surge capacity rather than standing
